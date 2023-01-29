@@ -22,6 +22,10 @@ namespace SpaceWars
             }
             Rocket = new Rocket(container, Ship);
             Sprites.Add(Rocket);
+            for (int i = 0; i < 3; i++)
+            {
+                Sprites.Add(new Rock(container));
+            }
         }
 
         public void Update()
