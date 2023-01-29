@@ -7,18 +7,20 @@ using System.Threading.Tasks;
 
 namespace SpaceWars
 {
-    internal class Star : Sprite
+    internal class Star : EnvirenmentSprite
     {
-        private static readonly Random random = new Random();
         public Star(Control container) : base(container)
+        {           
+            Pb.Image = Resources.star;           
+        }
+
+        public override void Collide(Sprite another, Game game)
         {
-            Pb.Image = Resources.star;
-            Pb.SizeMode = PictureBoxSizeMode.Zoom;
-            int size = random.Next(50, 250);
-            Pb.Size = new Size(size, size);
-            Pb.Left = container.Width * 15 / 10;
-            Pb.Top = random.Next(container.ClientSize.Height - size);
-            SpeedX = -random.Next(5, 20);
+            if(another is Ship)
+            {
+                game.ScoreUp();
+                GoToStart();
+            }
         }
     }
 }
