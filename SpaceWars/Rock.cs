@@ -7,20 +7,16 @@ using System.Threading.Tasks;
 
 namespace SpaceWars
 {
-    internal class Star : EnvironmentSprite
+    internal class Rock : EnvironmentSprite
     {
-        public Star(Control container) : base(container)
+        public Rock(Control container) : base(container)
         {
-            Pb.Image = Resources.star;
+            Pb.Image = Resources.rock;
         }
 
         internal override void Collide(Game game, Sprite target)
         {
-            if (target is Ship)
-            {
-                game.ScoreUp();
-                GoToStart();
-            }
+            if (target is Ship) game.Over();
         }
     }
 }
